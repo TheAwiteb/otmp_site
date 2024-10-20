@@ -1,0 +1,524 @@
+<!doctype html>
+<html
+    dir="rtl"
+    lang="ar-SA"
+>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+        
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        
+        
+        
+
+        <title>الأصدار الاول من بروتوكول OxideTalis</title>
+        
+        <meta name="title" content="الأصدار الاول من بروتوكول OxideTalis">
+        <meta name="author" content="Awiteb">
+        <meta name="description" content="OxideTalis Messaging Protocol (OTMP) specification">
+        <meta name="generator" content="Zola v0.16.1">
+
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://otmp.4rs.nl/ar/protocol/v1/">
+        <meta property="og:site_name" content="OxideTalis Messaging Protocol">
+        <meta property="og:title" content="الأصدار الاول من بروتوكول OxideTalis">
+        <meta property="og:description" content="OxideTalis Messaging Protocol (OTMP) specification">
+        <meta property="og:image" content="https:&#x2F;&#x2F;otmp.4rs.nl&#x2F;otmp_ar.png">
+
+        
+        
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://otmp.4rs.nl/ar/protocol/v1/">
+        <meta property="twitter:title" content="الأصدار الاول من بروتوكول OxideTalis">
+        <meta property="twitter:description" content="OxideTalis Messaging Protocol (OTMP) specification">
+        <meta property="twitter:image" content="https:&#x2F;&#x2F;otmp.4rs.nl&#x2F;otmp_ar.png">
+        
+        
+        <link rel="canonical" href="https://otmp.4rs.nl/ar/protocol/v1/">
+        <link rel="shortcut icon" type="image/x-icon" href="https://otmp.4rs.nl/otmp_logo.svg">
+        <script type="application/ld+json">
+            {
+                "description":"OxideTalis Messaging Protocol (OTMP) specification",
+                "url":"https://otmp.4rs.nl/ar/protocol/v1/",
+                "@type":"WebSite",
+                "headline":"الأصدار الاول من بروتوكول OxideTalis",
+                "name":"الأصدار الاول من بروتوكول OxideTalis",
+                "author":{
+                    "@type":"Person",
+                    "name":"Awiteb"
+                },
+                "@context":"https://schema.org"
+            }
+        </script>
+        
+        
+        
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://otmp.4rs.nl/atom.xml">
+        
+        
+        
+        <link rel="stylesheet" href="https://otmp.4rs.nl/style.css"/>
+        
+    </head>
+    <body theme="auto">
+        <div class="w">
+            <header>
+                
+                
+                
+                
+                <nav>
+                    
+                    <a href="/ar/" >العربية</a>
+                    
+                    <a href="/" >English</a>
+                    
+                </nav>
+                
+                
+<h2>الأصدار الاول من بروتوكول OxideTalis</h2>
+
+            </header>
+            <main class="page-content" aria-label="Content">
+                
+
+
+جدول المحتويات
+<ul>
+
+    <li>
+        <a href="https://otmp.4rs.nl/ar/protocol/v1/#overview">نظرة عامة</a>
+        
+            <ul>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#goals">الاهداف</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#non-goals">الاهداف الغير مرغوبة</a>
+                    </li>
+                
+            </ul>
+        
+    </li>
+
+    <li>
+        <a href="https://otmp.4rs.nl/ar/protocol/v1/#public-addresses">العناوين العامة</a>
+        
+    </li>
+
+    <li>
+        <a href="https://otmp.4rs.nl/ar/protocol/v1/#servers-dir-domain">عنوان دليل الخوادم</a>
+        
+            <ul>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#why-dir">مهمة هذا الدليل</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#server-and-relays">الخادم و المُرحلات</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#mention-dir-users">الإشارة إلى مستخدمين الدليل</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#servers-dir">خوادم الدليل</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#dir-content">محتوى المسار &#x2F;.well-known&#x2F;oxidetalis&#x2F;directory في الدليل</a>
+                    </li>
+                
+            </ul>
+        
+    </li>
+
+    <li>
+        <a href="https://otmp.4rs.nl/ar/protocol/v1/#shared-encryption-key">مفتاح التشفير المشترك</a>
+        
+            <ul>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#encryption">التشفير</a>
+                    </li>
+                
+            </ul>
+        
+    </li>
+
+    <li>
+        <a href="https://otmp.4rs.nl/ar/protocol/v1/#server-public-key">مفتاح الخادم العام</a>
+        
+    </li>
+
+    <li>
+        <a href="https://otmp.4rs.nl/ar/protocol/v1/#request-signature">توقيع الطلب</a>
+        
+            <ul>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#create-signature">إنشاء التوقيع</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#websocket-data">شكل البيانات داخل إتصال الـWebsocket</a>
+                    </li>
+                
+            </ul>
+        
+    </li>
+
+    <li>
+        <a href="https://otmp.4rs.nl/ar/protocol/v1/#communication">طريقة التواصل</a>
+        
+            <ul>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#important-concepts">مفاهيم مهمة</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#internal-communication">التواصل الداخلي</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://otmp.4rs.nl/ar/protocol/v1/#external-communication">التواصل الخارجي</a>
+                    </li>
+                
+            </ul>
+        
+    </li>
+
+    <li>
+        <a href="https://otmp.4rs.nl/ar/protocol/v1/#acknowledgment">شكر و تقدير</a>
+        
+    </li>
+
+</ul>
+
+
+<p><small>المؤلف: <a href="https://4rs.nl">عويتب</a></small><br />
+<small>التاريخ: 2024/6/1</small><br />
+<small>الاصدار: 1.0.0</small><br />
+<small>الحالة: مسودة</small></p>
+<h2 id="overview">نظرة عامة</h2>
+<p>بروتوكول OxideTalis هو بروتوكول تواصل بين طرفين بتشفير تام من طرف إلى طرف عبر
+مفتاح تشفير مشترك بينهم، يهدف البروتوكول إلى توفير سهولة التنقل من خادم إلى أخر
+بشكل إفتراضي وتوفير طريقة للتواصل بين الافراد بدون الإعتماد على خادم مركزي لتنظيم عملية
+التواصل، وبدون تواصل خادم المرسل وخادم المستقبل مع بعضهم البعض.</p>
+<h3 id="goals">الاهداف</h3>
+<ul>
+<li>تواصل آمن بين طرفين مُشفر من ند إلى ند.</li>
+<li>سهولة التنفيذ.</li>
+<li>امكانية الإنتقال إلى خادم آخر.</li>
+<li>امكانية التواصل مع اطراف خارج الخادم الخاص بالمرسل بدون الإعتماد على خادم مركزي.</li>
+<li>عدم الحاجة لتواصل المرسل مع الخادم الخاص به للتواصل مع اشخاص خارج الخادم.</li>
+<li>عدم الحاجة ﻷسم مستخدم وكلمة مرور لتخويل المسخدم للمراسلة، والاكتفاء بالعنوان
+العام الخاص به.</li>
+</ul>
+<h3 id="non-goals">الاهداف الغير مرغوبة</h3>
+<ul>
+<li>التواصل الجماعي.</li>
+<li>المكالمات الصوتية أو الفيديو.</li>
+</ul>
+<h2 id="public-addresses">العناوين العامة</h2>
+<p>العنوان العام هو المفتاح العام الخاص بخوارزمية <a href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman">Elliptic Curve Diffie-Hellman</a>
+مضغوط وهو يتكون من 33 بايت (264 بت) يتم ترميزه بترميز <a href="https://bitcoinwiki.org/wiki/base58">base58</a> على سبيل المثال
+العنوان التالي <code>becZJsZZqGR7qBG8t1Pm4uy62jDTzJsabxnkARhr2syo</code>.</p>
+<p>يتم وضع العنوان العام في رأس (Header) الطلب (Request) بأسم <code>X-OTMP-PUBLIC</code> ويجب
+ان يكون نص <a href="https://bitcoinwiki.org/wiki/base58">base58</a> صحيح مكون من 33 بايت (264 بت) بعد فك ترميزه.</p>
+<h2 id="servers-dir-domain">عنوان دليل الخوادم</h2>
+<p>عنوان دليل الخوادم هو نطاق طبيعي على سبيل المثال <code>example.com</code> يحتوي على المسار التالي <span dir='ltr'><code>/.well-known/oxidetalis/directory</code></span> ومحتوى هذا المسار ملف json يوجد به خادم و مُرحلات مستخدمين هذا الدليل.</p>
+<p>الخادم الذي في هذا الدليل يكون اسمه خادماً إذا كان يقبل التواصل الداخلي، إذا كان يقبل التواصل الخارجي فقط حتى بين مستخدمينه، يصبح اسمه مُرحل. </p>
+<p>يمكن أن يكون هذا الدليل تابع لمستضيف معين ويضع به خوادمه أو عناوين لنفس الخادم (مثل عنوانه في شبكة Tor) أو يكون تابع لفرد ويضع به الخوادم التي يستخدمها. يجب لكل خادم في الدليل أن يصدر شهادة SSL/TLS من جهة موثوقة
+لأن الإتصال سيكون HTTPS (يستثنى من هذا خدمات Tor).</p>
+<h3 id="why-dir">مهمة هذا الدليل</h3>
+<p>في الإتصال الخارجي يحتاج المُرسل معرفة خادم المُستقبل لإرسال الرسالة إليه، عبر هذا الدليل سيعرف المُرسل خادم المُستقبل و المُرحلات التي يستقبل الرسائل منها.</p>
+<h3 id="server-and-relays">الخادم و المُرحلات</h3>
+<p>المستخدم يمكن أن يكون لديه خادم واحد أو لا يكون لديه، من خلال هذا الخادم سوف يتم جلب ملف تعريف المستخدم، أسمه و صورة ملفه التعريفي و النبذة و أي معلومات خاصة به.
+و يستطيع الخادم تحويل الرسائل الخارجية إلى مستخدميه مثله مثل المُرحلات.</p>
+<p>المُرحل لديه وظيفة واحدة فقط، وهي تحويل الرسائل الخارجية إلى مستخدميه، ليس لدى المرحل أي وظيفة أخرى، لا يقوم بتخزين ملفات مستخدمينه التعريفية ولا أي معلومات ما عدى عناوينهم العامة لتحويل الرسائل إليهم.</p>
+<blockquote>
+<p>سوف يتم الإشارة إلى الخوادم و المُرحلات بخوادم في هذا التوثيق.</p>
+</blockquote>
+<h3 id="mention-dir-users">الإشارة إلى مستخدمين الدليل</h3>
+<p>للإشارة إلى المستخدمين في أي وسيلة نقل يكون بالطريقة التالية <snap dir='ltr'><code>@becZJsZZqGR7qBG8t1Pm4uy62jDTzJsabxnkARhr2syo/example.com</code></snap> علامة <code>@</code> متبوعة بعنوان المستخدم العام متبوعاً بخط مائل
+وبعد ذلك عنوان الدليل. يمكن لمطوري عملاء OxideTalis إختصار إسم عنوان المستخدم بالشكل التالي عند الإشارة إليه <snap dir='ltr'><code>@bec..syo/example.com</code></snap> بأخذ ثلاث محرفات من البداية ومن النهاية و الفصل بينهم بنقطتين <code>..</code>.</p>
+<h3 id="servers-dir">خوادم الدليل</h3>
+<p>يوجد نوعين من خوادم الدليل، النوع الأول الخوادم التي على شبكة الإنترنت العامة ولتي يتم جلب عنوانها من النطاق الخاص بها مثل <code>example.com</code>، سوف يتم التواصل مع هذه الخوادم بإتصال https و wss لذلك يجب أن يكون لديها شهادة SSL/TLS ويجب ان تكون
+الشهادة موقعة من جهة موثوقة وليست موقعة ذاتياً<sup class="footnote-reference"><a href="#1">1</a></sup>، يتم الإشارة إلى هذا الخوادم بالنطاق الذي تستخدمه و المنفذ، على سبيل المثال <code>otmp.example.com:443</code> يتم الفصل بين النطاق الذي سوف يتم جلب العنوان منه و المنفذ بنقطتان رأسيتان.</p>
+<p>النوع الثاني وهو خدمات شبكة Tor المخفية، سوف يتم الإتصال بها بـhttp و ws، يتم الإشارة إليها بوضع عنوانها في شبكة Tor فقط بدون المنفذ، على سبيل المثال <snap dir='ltr'><code>duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion</code></snap></p>
+<h3 id="dir-content">محتوى المسار <span dir='ltr'><code>/.well-known/oxidetalis/directory</code></span> في الدليل</h3>
+<p>يجب أن يرجع هذا المسار نص بتنسيق JSON يحتوي هذا النص على المفتاحين &quot;server&quot; و &quot;relays&quot;، محتوى المفتاح &quot;server&quot; نص (<a href="https://otmp.4rs.nl/ar/protocol/v1/#servers-dir">تم توضيح تنسيقه هنا</a>) ويمكن أن يكون <code>null</code> و المفتاح &quot;relays&quot; مصفوفة نصية يوجد بها المُرحلات (<a href="https://otmp.4rs.nl/ar/protocol/v1/#servers-dir">تم توضيح تنسيقها هنا</a>) ويمكن أن تكون <code>null</code>.
+يمكن للمستخدم أن لا يكون لديه خادم بالتالي لن يكون لديه ملف تعريفي، و يمكن أن لا يكون لديه مُرحلات وسوف يتم التواصل الخارجي عبر خادمه. يعد الدليل تالف إذا لم يكن به خادم ولا مُرحلات.</p>
+<h4 id="dir-example">أمثلة</h4>
+<p>في المثال التالي مُخرج الدليل <code>example.com</code> في المسار <span dir='ltr'><code>/.well-known/oxidetalis/directory</code></span> ويتضح به انه لايوجد إلا الخادم</p>
+<div dir="ltr">
+<pre data-lang="json" style="background-color:#2b303b;color:#c0c5ce;" class="language-json "><code class="language-json" data-lang="json"><span>{ &quot;</span><span style="color:#a3be8c;">server</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">otmp.example.com:443</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">relays</span><span>&quot;: </span><span style="color:#d08770;">null </span><span>}
+</span></code></pre>
+</div>
+<p>في المثال التالي مُخرج الدليل <code>example.net</code> في المسار <span dir='ltr'><code>/.well-known/oxidetalis/directory</code></span> ويتضح به انه يوجد مُرحلين فقط</p>
+<div dir="ltr">
+<pre data-lang="json" style="background-color:#2b303b;color:#c0c5ce;" class="language-json "><code class="language-json" data-lang="json"><span>{
+</span><span>    &quot;</span><span style="color:#a3be8c;">server</span><span>&quot;: </span><span style="color:#d08770;">null</span><span>,
+</span><span>    &quot;</span><span style="color:#a3be8c;">relays</span><span>&quot;: [
+</span><span>     &quot;</span><span style="color:#a3be8c;">random-relay.tld:7294</span><span>&quot;,
+</span><span>     &quot;</span><span style="color:#a3be8c;">duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion</span><span>&quot;
+</span><span>     ] 
+</span><span>}
+</span></code></pre>
+</div>
+<blockquote>
+<p>يجب على الخوادم عدم تخزين دلائل المرسلين، ويتم تحديدها في الطلب المرسل من
+قبلهم فقط، حيث أن المفتاح العام هو المعرف المشترك بين جميع الخوادم.</p>
+</blockquote>
+<h2 id="shared-encryption-key">مفتاح التشفير المشترك</h2>
+<p>يتم انشاء مفتاح التشفير المشترك عبر خوارزمية <a href="https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman">Elliptic Curve Diffie-Hellman</a>
+secp256k1 حيث يقوم مرسل الرسالة بوضع العنوان العام الخاص بالمستقبِل لإنتاج
+المفتاح المشترك، بعد إنتاج المفتاح المشترك يتم ادخاله إلى دالة <a href="https://en.wikipedia.org/wiki/HKDF">HKDF</a> <strong>بدون
+ملح</strong> بخوارزمية <a href="https://en.wikipedia.org/wiki/SHA-2">Sha256</a> وبعد ذلك يتم عمل له توسعة (expand) بدون معلومات (info)
+بطول 32 بايت (256 بت).</p>
+<h3 id="encryption">التشفير</h3>
+<p>سوف يتم استخدام <a href="https://otmp.4rs.nl/ar/protocol/v1/#shared-encryption-key">مفتاح التشفير المشترك</a> مفتاحاً للتشفير في خوارزمية <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES-256
+CBC</a>، بعد تشفير الرسالة يتم وضع قيمة التهيئة (iv) في أخر الرسالة، ليكون اخر 16
+بايت (128 بت) هي قيمة التهيئة (iv) التي سوف يستخدمها المستقبِل لفك تشفير
+الرسالة.</p>
+<p>مثال لمفتاح تشفير مشترك بترميز <a href="https://bitcoinwiki.org/wiki/base58">base58</a> <span
+dir="ltr"><code>LKGKeuV3SRu1n3fez4SdboM3FT48vbBxHai9MbuWxb3</code></span></p>
+<h2 id="server-public-key">مفتاح الخادم العام</h2>
+<p>مفتاح الخادم العام هو مثل العنواين العامة الخاصة بالمستخدمين، ولكنه خاص بالخادم،
+حيث ان الخادم سوف يقوم بأنشاء مفتاح مشترك بينه وبين مرسل الطلب (Request) ليتأكد
+من أن المرسل (صاحب العنوان العام) هو مالك هذا العنوان. يتم التأكد عبر مطابقة
+التوقيع الموجود في الطلب (Request).</p>
+<p>يتم جلب مفتاح الخادم العام من المسار <span
+dir='ltr'><code>/api/info</code></span> سوف يتم إرسال طلب GET إلى هذا المسار و
+يجب أن يُرجع هذا المسار نص بتنسيق <code>application/json</code> يحتوي على المفتاح <code>public_key</code> ولذي قيمته نص المفتاح العام الخاص بالخادم بترميز <a href="https://bitcoinwiki.org/wiki/base58">base58</a>.</p>
+<blockquote>
+<p>تم توضيح المفتاح العام هنا (<a href="https://otmp.4rs.nl/ar/protocol/v1/#public-addresses">العناوين العامة</a>)</p>
+</blockquote>
+<blockquote>
+<p>حاول ان لا تقوم بتغيير المفتاح العام الخاص بالخادم بشكل مستمر، لآن العملاء سوف
+يقومون بتخزينه بالعادة.</p>
+</blockquote>
+<h2 id="request-signature">توقيع الطلب</h2>
+<p>هو التوقيع الخاص بالطلب يتم وضعه في رأس الطلب (Header) بأسم <code>X-OTMP-SIGNATURE</code>
+او في بيانات ال <a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a> في المفتاح <code>signature</code> بترميز <a href="https://en.wikipedia.org/wiki/Hexadecimal">Hex</a> ويتم أستخدامه
+للتأكد من ان مرسل الطلب هو مالك المفتاح العام.</p>
+<h3 id="create-signature">إنشاء التوقيع</h3>
+<p>التوقيع يحتاج إلى ثلاث اشياء ليتم إنشائه</p>
+<ul>
+<li>مفتاح التشفير المشترك.</li>
+<li>جسم الطلب (body) أو بيانات الحدث (data) أو طريقة الطلب+المسار، مثال
+(GET/ws/chat)</li>
+<li>ثواني الوقت الحالي للمنطقة الزمنية UTC+00:00 بتنسيق <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Time</a> (8 بايت أي 64
+بت <strong>big-endian</strong>).</li>
+<li>16 بايت عشوائي (128 بت).</li>
+</ul>
+<p>يتم إدخال جسم الطلب (body) او بيانات الحدث في الـ<a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a> إلى دالة
+<a href="https://en.wikipedia.org/wiki/HMAC">HMAC-SHA256</a> و إستخدام <a href="https://otmp.4rs.nl/ar/protocol/v1/#shared-encryption-key">مفتاح التشفير المشترك</a> مضافاً إليه الوقت الحالي (8
+بايت) و الـ16 بايت العشوائي، أي المفتاح المستخدم في دالة <a href="https://en.wikipedia.org/wiki/HMAC">HMAC-SHA256</a> سوف يكون</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>مفتاح التشفير المشترك+الوقت الحالي+16 بايت عشوائي
+</span></code></pre>
+<p>بعد ذلك يتم أخذ نتيجة دالة <a href="https://en.wikipedia.org/wiki/HMAC">HMAC-SHA256</a> و إضافة الوقت المستخدم في الأعلى و
+الـ16 بايت المستخدمة في الأعلى و جميعهم بترميز <a href="https://en.wikipedia.org/wiki/Hexadecimal">Hex</a>، مثال</p>
+<div dir="ltr">
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>bad035084e11bfd266c7b7dfa473d6603be551b3aa215f869776b75bf42ef31900000000665e1a696e6d776f65726e6664757265686a66
+</span></code></pre>
+</div>
+<p>بعد تحويله إلى بايتات سوف يكون المجموع 56 بايت، وسوف يكون التقسيم كالتالي</p>
+<ul>
+<li>مخرج دالة <a href="https://en.wikipedia.org/wiki/HMAC">HMAC-SHA256</a>: من بايت 0 إلى بايت31. (التوقيع الذي سوف يتحقق منه
+الخادم)</li>
+<li>الوقت: من بايت 32 إلى بايت 39. (الذي سوف يتم إضافته بعد <a href="https://otmp.4rs.nl/ar/protocol/v1/#shared-encryption-key">مفتاح التشفير
+المشترك</a>)</li>
+<li>ال 16 بايت العشوائي: من بايت 40 إلى بايت 55. (سوف يتم إضافته بعد الوقت)</li>
+</ul>
+<p>سوف يتحقق الخادم من أن الوقت الذي في التوقيع لم يتجاوز الـ20 ثانية، وسوف يقوم
+الخادم بتخزين ال 16 بايت العشوائي في الكاش بمدة حياة 30 ثانية، ليتأكد الخادم من
+ان ال 16 بايت العشوائي لن يتم إستخدامهم في توقيع أخر، بالتالي ضمان عدم إرسال
+الطلب مرة أخرى من المهاجمين (ضمان أن التوقيع صالح لمرة واحدة فقط).</p>
+<h3 id="websocket-data">شكل البيانات داخل إتصال الـWebsocket</h3>
+<p>بعد الإتصال بـ<a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a> مع الخادم، يكون تنسيق البيانات التي يتم تبادلها بين
+المرسل والخادم json ويجب عليها توفر المفاتيح التالية</p>
+<ul>
+<li><code>event</code>: إسم الحدث، على سبيل المثال إرسال رسالة او تحديث حالة الكتابة (التنسيق
+PascalCase).</li>
+<li><code>data</code>: البيانات الخاصة بالحدث.</li>
+<li><code>signature</code>: توقيع بيانات الحدث (data)، هذا التوقيع يكون بين المرسل وبين
+الخادم وليس المُستقبل.</li>
+</ul>
+<h4 id="websocket-data-example">مثال لشكل البيانات في ال websocket</h4>
+<div dir="ltr">
+<pre data-lang="json" style="background-color:#2b303b;color:#c0c5ce;" class="language-json "><code class="language-json" data-lang="json"><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">event</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">EventName</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">data</span><span>&quot;: {
+</span><span>    &quot;</span><span style="color:#a3be8c;">key</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">value</span><span>&quot;
+</span><span>  },
+</span><span>  &quot;</span><span style="color:#a3be8c;">signature</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">bad035084e11bfd266c7b7dfa473d6603be551b3aa215f869776b75bf42ef31900000000665e1a696e6d776f65726e6664757265686a66</span><span>&quot;
+</span><span>}
+</span></code></pre>
+</div>
+<blockquote>
+<p>يمكن للخادم طلب أي شكل من البيانات، و يجب أن تكون المعلومات الحساسة مثل
+الرسالة او الملف مُشفرة بين المُرسل و المُستقبل.</p>
+</blockquote>
+<h2 id="communication">طريقة التواصل</h2>
+<p>هنا سوف يتم توضيح طريقة التواصل بين طرفين في خادم واحد (تواصل داخلي)، وبين طرفين
+في خوادم مختلفة (تواصل خارجي)</p>
+<h3 id="important-concepts">مفاهيم مهمة</h3>
+<ul>
+<li>التواصل الداخلي: هو تواصل طرفين في الخادم نفسه.</li>
+<li>التواصل الخارجي: هو تواصل طرفين في خوادم مختلفة.</li>
+<li>القائمة البيضاء: هي قائمة يمتلكها كل مستخدم في الخادم يوجد بها المستخدمين
+المسموح لهم بمراسلته.</li>
+<li>القائمة السوداء: هي قائمة يمتلكها كل مستخدم في الخادم يوجد بها المستخدمين
+الغير مسموح لهم بإرسال طلب دردشة إليه.</li>
+<li>قائمة الخادم السوداء: هي قائمة يقوم بوضعها مالك الخادم ليمنع خادمه من التواصل
+مع خوادم محددة او اشخاص محددين.</li>
+<li>جدول الإتصالات الخارجية: هو جدول يتم حفظ به الرسائل الخارجية التي وصلت إلى
+المستخدم عندما لم يكن متصل بالخادم، ويتم مسحها بعد إرسالها له.</li>
+<li>جدول طلبات الدردشة: هو جدول يتضمن طلبات الدردشة التي قاموا بإرسالها او
+إستقبالها افراد الخادم إلى/من افراد اخرين في نفس الخادم او في خوادم أخرى، ويتم
+مسح الطلب بعد وصول قبوله او رفضه. يتم الإستفادة من هذا الجدول لعدم إستقبال
+إشعارات قبول او رفض مزيفة.</li>
+</ul>
+<blockquote>
+<p>سوف يتم استبدال العنوان العام بأسم <strong>سارة</strong> و <strong>أحمد</strong> لآن العناوين العامة
+طويلة نسبياً</p>
+</blockquote>
+<h3 id="internal-communication">التواصل الداخلي</h3>
+<p>اولاً <strong>يجب</strong><sup class="footnote-reference"><a href="#2">2</a></sup> عند فتحك لعميل التواصل أن تقوم بإنشاء إتصال <a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a> بينك
+وبين الخادم الخاص بك، عبر هذا الإتصال سوف تستقبل الرسائل الجديدة من الخادم الخاص
+بك، وسوف تقوم بالتواصل من خلاله لإرسال الرسائل إلى افراد الخادم.</p>
+<p>لدينا الآن المرسلة <strong>سارة</strong> والمستقبِل <strong>أحمد</strong> و كلاهم في الخادم نفسه، سوف تقوم
+<strong>سارة</strong> بإرسال حدث <a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a> تطلب من الخادم إرسال طلب دردشة إلى <strong>أحمد</strong> سوف
+يرد الخادم بأحد الأخطأ التالية، او لا يقوم بالرد إذا لم يكن هناك خطأ.</p>
+<h4 id="no-user">إذا لم يكن هناك مستخدم بأسم <strong>أحمد</strong> في الخادم</h4>
+<p>سوف يرجع الخادم خطأ ويخبر فيه <strong>سارة</strong> أنه ليس هناك مستخدم بهذا الأسم.</p>
+<h4 id="not-in-white-or-black-list">إذا لم تكن <strong>سارة</strong> في قائمة <strong>أحمد</strong> البيضاء ولا السوداء</h4>
+<p>سوف يقوم الخادم اولاً بإضافة <strong>أحمد</strong> إلى قائمة <strong>سارة</strong> البيضاء، وبعد ذلك إضافة
+الطلب في جدول طلبات دردشة <strong>أحمد</strong> <strong>المُستقبلة</strong> إذا كان غير متصل مع الخادم
+وسوف يضيفه إلى <strong>المُرسلة</strong> بالنسبة إلى <strong>سارة</strong>، لا يرجع الخادم أي خطأ في هذه
+الحالة.</p>
+<p>عندما يرد <strong>أحمد</strong> بالموافقة أو الرفض (عبر إتصال الـ<a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a>)، سوف يُعلم
+الخادم <strong>سارة</strong> بأن <strong>أحمد</strong> وافق أو رفض التواصل معها (عبر إتصال الـ<a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a>
+أو إضافتها إلى جدول ليُعلمها عند تواصلها مع الخادم). إذا لم يوافق <strong>أحمد</strong> سوف
+يقوم الخادم بإضافة <strong>سارة</strong> إلى قائمة <strong>أحمد</strong> السوداء، و إذا وافق سوف يتم
+إضافتها إلى القائمة البيضاء.</p>
+<h4 id="in-white-list">إذا كانت <strong>سارة</strong> في قائمة <strong>أحمد</strong> البيضاء</h4>
+<p>سوف يرجع الخادم خطأ، يُعلم <strong>سارة</strong> أنها في قائمة <strong>أحمد</strong> البيضاء (يمكنها
+التواصل معه)</p>
+<h4 id="in-black-list">إذا كانت <strong>سارة</strong> في قائمة <strong>أحمد</strong> السوداء</h4>
+<p>سوف يرجع الخادم خطأ و يُعلم <strong>سارة</strong> انها في قائمة <strong>أحمد</strong> السوداء ولا يمكنه
+الدردشة معه.</p>
+<blockquote>
+<p>يتم تخزين رسائل الطرفين مُشفرة في قاعدة البيانات الخاصة بالخادم</p>
+</blockquote>
+<h3 id="external-communication">التواصل الخارجي</h3>
+<p>لدينا الآن المرسلة <strong>سارة</strong> من <code>example1.com</code> والمستقبِل <strong>أحمد</strong> من
+<code>example2.com</code> سوف تقوم <strong>سارة</strong> بإرسال طلب Get إلى <code>example2.com</code> تطلب فيه
+الدردشة مع <strong>أحمد</strong>، <strong>يجب</strong> على <strong>سارة</strong> وضع الرأس <code>X-OTMP-SERVER</code> يحتوي على
+أسم الخادم الخاص بها، سوف يستخدم <strong>أحمد</strong> هذا الخادم لإرسال طلب القبول أو الرفض
+إليه إذا لم تكن <strong>سارة</strong> في قائمته السوداء ولا البيضاء، سوف يرد الخادم بأحد
+الردود التالية</p>
+<h4 id="no-user-external">إذا لم يكن هناك مستخدم بأسم <strong>أحمد</strong> في الخادم</h4>
+<p>سوف يرجع الخادم 404 و يُعلم <strong>سارة</strong> بأنه ليس لديه مستخدم بهذا الأسم.</p>
+<h4 id="not-in-white-or-black-list-external">إذا لم تكن <strong>سارة</strong> في قائمة <strong>أحمد</strong> البيضاء ولا السوداء</h4>
+<p>سوف يقوم خادم <strong>أحمد</strong> بإرسال طلب الدردشة إلى <strong>أحمد</strong> او يقوم بتخزين الطلب في
+جدول طلبات الدردشة <strong>المٌستقبلة</strong>، ويرد عليها بـ202، بعد ذلك تقوم <strong>سارة</strong> بطلب
+الخادم الخاص بها من إضافة <strong>أحمد</strong> إلى قائمتها البيضاء لتستقبل منه الرسائل
+مستقبلاً بدون حاجة <strong>أحمد</strong> إرسال طلب دردشة وإنتظار قبولها، سوف تقوم <strong>سارة</strong>
+ايضاً بطلب الخادم من إضافة <strong>أحمد</strong> إلى جدول طلبات الدردشة <strong>المُرسلة</strong><sup class="footnote-reference"><a href="#3">3</a></sup></p>
+<h4 id="accept-or-reject-external">قبول أو رفض طلب الدردشة</h4>
+<p>بعدما يستقبل <strong>أحمد</strong>  طلب دردشة <strong>سارة</strong> و خادمها و عندما يريد قبول أو رفض
+الطلب سيقوم بالإرسال إلى النقطة <span
+dir='ltr'><code>/api/chat_response</code></span> في خادم <strong>سارة</strong>، يجب على
+<strong>أحمد</strong> وضع عنوانه العام في الرأس <code>X-OTMP-PUBLIC</code> وتوقيع الطلب في
+<code>X-OTMP-SIGNATURE</code>، يجب أن يرسل طلب POST إلى النقطة مع جسم يوضح من مرسل الطلب
+(<strong>سارة</strong> في حالتنا) و إذا اراد قبوله أم لا.</p>
+<p>بعد ذلك إذا لم يكن لـ<strong>سارة</strong> إتصال <a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a> سابق مع خادم <strong>أحمد</strong>، سوف تقوم
+بإرسال طلب دردشة ليتم ترقية الإتصال إلى <a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a>، ونفس المسئلة مع <strong>أحمد</strong>
+إذا اراد التواصل مع <strong>سارة</strong> سوف يقوم بإرسال طلب دردشة ويتم ترقية الإتصال او
+إعلامه بوجود إتصال <a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a> مفتوح.</p>
+<h4 id="in-white-list-external">إذا كانت <strong>سارة</strong> في قائمة <strong>أحمد</strong> البيضاء</h4>
+<p>سوف يقوم الخادم بترقية الإتصال إلى <a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a> او إذا كانت <strong>سارة</strong> متصلة معه من
+قبل، سوف يقوم بإرجاع 400 ويخبر <strong>سارة</strong> بالتواصل معه عبر ال <a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a>.</p>
+<h4 id="in-black-list-external">إذا كانت <strong>سارة</strong> في قائمة <strong>أحمد</strong> السوداء او كانت هي او خادمها في قائمة الخادم السوداء</h4>
+<p>سوف يرجع الخادم 403 مع توضيح السبب.</p>
+<h4 id="external-communication-basics">أساسيات التواصل الخارجي</h4>
+<ul>
+<li>يجب على <strong>سارة</strong> فتح إتصال <a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a> مع جميع الخوادم التي تريد التواصل مع
+افرادها.</li>
+<li>لايتم تخزين الرسائل الخارجية التي يستقبلها الخادم بشكل دائم، يتم تخزينها فقط
+إذا لم يكن <strong>أحمد</strong> متصل بالخادم، ويتم مسحها بعد إرسالها إلى <strong>أحمد</strong>.</li>
+<li>الرسائل والملفات تكون مشفرة بين <strong>سارة</strong> و <strong>أحمد</strong> وتكون موقعة للخادم المراد
+التواصل مع افراده.</li>
+</ul>
+<h2 id="acknowledgment">شكر و تقدير</h2>
+<p>شكراً للأشخاص التاليين على مراجعة و تحسين البروتوكول.</p>
+<ul>
+<li>أمجد الشرفي &lt;<a href="mailto:me@amjad.alsharafi.dev">me@amjad.alsharafi.dev</a>&gt;: تحسين طريقة عمل التوقيع، و أقتراح
+الطريقة الحالية.</li>
+</ul>
+<hr data-content="وصلات" \>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>لضمان عدم وجود شخص في المنتصف، يقوم بالتلاعب بالبيانات و الإطلاع عليها.</p>
+</div>
+<!--  -->
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p>طالما انك عضو في الخادم، سوف يعتقد الخادم دائماً انك في إتصال <a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a> معه، ولن يقوم بترقية أي إتصال إلى <a href="https://en.wikipedia.org/wiki/WebSocket">Websocket</a></p>
+</div>
+<!--  -->
+<div class="footnote-definition" id="3"><sup class="footnote-definition-label">3</sup>
+<p>يتم إضافة العنوان الخاص بـ<strong>أحمد</strong> في جدول طلبات الدردشة المُرسلة للتاكد من عدم إستقبال إشعارات قبول/رفض مزيفة هدفها الإزعاج.</p>
+</div>
+
+
+            </main>
+            <footer>
+                
+<p class="taxonomies">
+
+</p>
+
+                
+                
+                
+                
+                <nav>
+                    
+                    <a href="mailto:otmp@4rs.nl" target="_blank" rel="noreferrer noopener">البريد الإلكتروني</a>
+                    
+                    <a href="/pgp.asc" target="_blank" rel="noreferrer noopener">مفتاح PGP</a>
+                    
+                    <a href="https://git.4rs.nl/OxideTalis/otmp_site" target="_blank" rel="noreferrer noopener">الشِفرة</a>
+                    
+                </nav>
+                
+            </footer>
+        </div>
+    </body>
+</html>
+        
